@@ -1,16 +1,28 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
-  template: `<div id="myDrop" class="dropdown" style="position:absolute; z-index:12000;">
-  <button class="btn btn-outline-secondary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  template: `<div id="{{dropDownId}}" class="dropdown pointer" style="position:relative; z-index:12000;">
+  <a href class="dropdown-toggle" id="{{dropDownMenuId}}"
+   data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     Action
     <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <a class="dropdown-item pointer" (click)="parent.deleteCell(row)">Delete Row</a>
+  </a>
+  <ul class="dropdown-menu">
+    <span class="dropdown-item text-primary" >{{dataContext.title}}</span>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item pointer" >action1</a>
+    <a class="dropdown-item pointer">action2</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item text-danger" (click)="parent.deleteCell(row)">Delete Row</a>
   </ul></div>`
+
 })
-export class CustomActionFormatterComponent {
+export class CustomActionFormatterComponent{
+
   parent: any;
   row: number;
+  dataContext : any
+  dropDownId  = 'myDrop';
+  dropDownMenuId = 'dropdownMenu1';
+ 
 }
